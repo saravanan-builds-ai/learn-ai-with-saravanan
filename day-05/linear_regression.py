@@ -1,6 +1,8 @@
 # Import the LinearRegression algorithm
 from sklearn.linear_model import LinearRegression
 
+import pandas as pd
+import numpy as np
 import joblib
 
 # Import train_test_split to divide our dataset
@@ -9,24 +11,19 @@ from sklearn.model_selection import train_test_split
 # Import mean_absolute_error to evaluate predictions
 from sklearn.metrics import mean_absolute_error
 
+pd = pd.read_csv(
+    "data/developer_salary.csv",index_col= False)
 # Input data: years of developer experience
 # Each nested list represents one developer
-X = [
-    [1],
-    [2],
-    [3],
-    [4],
-    [5],
-    [6],
-    [7],
-    [8],
-    [9],
-    [10]
-]
+X = pd["experience"].values.reshape(-1,1)
+
 
 # Expected salary in lakhs per year
 # Each salary corresponds to the experience above
-y = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21]
+y =pd["salary"].values
+
+
+
 
 # Split the data into training and testing sets
 # 20% of the data is reserved for testing
